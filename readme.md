@@ -7,6 +7,8 @@
 - commodity-collateralized
 - non-collateralized (algorithmic)
 
+Dashboard: https://stablecoins.wtf/
+
 ## Введение:
 
 Алгоритмические стэйблкойны - монеты, не обеспеченные никаким реальным или цифровым активом (collateral), и которые вместо этого строятся на сложной комбинации алгоритмов (воздействующих на цену или предложение) и трюках из теории игр.
@@ -301,6 +303,61 @@ Limitations:
 - bank-run, вызванный резким падением цены коллатерала
 
 ![Float price](stablecoins/float-price.png)
+
+### OlympusDAO
+
+https://olympusdao.medium.com/comparison-of-olympus-credits-and-the-empty-set-dollar-590146dcdf8b
+
+Особенности:
+
+- the goal is to build a policy-controlled currency system
+- in the short term, we intend to optimize the system for growth and wealth creation
+- non-pegged stablecoin
+- each OHM token is backed by 1 DAI in the treasury
+- It is important to understand that OHM does not rebase. Rather, new supply is created via direct sales into the market and burned via direct purchases from the market.
+- Initial profit distribution will be 90% to stakers and 10% to DAO
+- The protocol distributes tokens by sending them to the staking contract without asking for sOHM back
+- Есть два механизма: стэйкинг и бондинг
+- Стэйкинг - принес OHM и получаешь доход от ребейзов
+- Бондинг - отдаешь ликвидность на дексе и получаешь OHM дешевле рынка
+- У протокола получается два трэжери: в даи и в LP токенах
+
+Stability:
+
+- Если OHM < 1 DAI: the protocol buys back and burn OHM
+- Если OHM > 1 DAI: the protocol mints and sells new OHM
+
+Because the treasury must hold 1 DAI and only 1 DAI for each OHM, every time it buys or sells it makes a profit. It either gets more than 1 DAI for the sale, or spent less than 1 DAI on the purchase.
+
+### Liquity
+
+Особенности:
+
+- Zero governance
+- Dual-token design
+- LUSD is soft-pegged to USD
+- 110% over-collateralized by ETH
+- LUSD - stablecoin, LQTY - value accrual (borrowing fee, redemption fee)
+- Чтобы заминтить LUSD пользователь депозитит ETH в trove (vault)
+- Заминтить можно с уровнем коллатерализации 150%
+- Borrowing fee 0.5% на запуске, но определяется алгоритмом (algorithmically adjust based on the last redemption time), может быть в диапазоне 0.5% - 5%
+- Redemption fee: увеличивается с каждым последующим redemption в зависимости от объема и уменьшается, если нет redemptions
+- Decentralization: только ETH, нет своего фронтэнда, нет гавернанса и нет admim keys
+- Может использовать LUSD застэйканый в Stability pool для auto liquidations, а вырученный эфир делить про-рата между стэйкерами в Stability pool
+
+Stability (soft peg):
+
+- Если LUSD < 1 USD: закрывать открытые loans. Также Redemption - пользователь может обменять LUSD на ETH по face value (когда цена на рынке меньше 1 USD), то система возьмет ETH из trove с наименьшей коллатерализацией
+- Если LUSD > 1 USD: открывать новые loans
+
+### Abracadabra
+
+https://abracadabra.money/
+
+### Reserve
+
+https://reserve.org/en/
+https://podcasts.google.com/feed/aHR0cHM6Ly9mZWVkcy5zaW1wbGVjYXN0LmNvbS9sS21RREc5Ug/episode/ZjI5MDE5M2EtMTAzMy00NWJkLWJmNzMtYzdjNzQyYzRhMGU0?ep=14
 
 ## Выводы:
 
